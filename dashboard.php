@@ -284,7 +284,7 @@
             var energyDataPoints = [];
             var updateCount = 0;
             var lastStatusUpdate = Date.now();
-            var statusCheckInterval = 5000; // 5 seconds
+            var statusCheckInterval = 2000;
             var consecutiveFailures = 0;
             var consecutiveSuccesses = 0;
             var requiredFailures = 3; // Number of consecutive failures needed to change status to FAILED
