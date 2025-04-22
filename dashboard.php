@@ -277,18 +277,20 @@
 
     <script>
         window.onload = function() {
-            var updateInterval = <?php echo $updateInterval ?>;
+            // Configuration parameters - adjust these to control timing
+            var updateInterval = <?php echo $updateInterval ?>; // How often to update the dashboard (in milliseconds)
+            var statusCheckInterval = 1000; // How often to check if ESP32 is still active (in milliseconds)
+            var requiredFailures = 1; // Number of consecutive failures needed to change status to FAILED
+            var requiredSuccesses = 2; // Number of consecutive successes needed to change status to SUCCEED
+            
             var dataPoints = <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>;
             var currentDataPoints = <?php echo json_encode($currentDataPoints, JSON_NUMERIC_CHECK); ?>;
             var powerDataPoints = [];
             var energyDataPoints = [];
             var updateCount = 0;
             var lastStatusUpdate = Date.now();
-            var statusCheckInterval = 2000;
             var consecutiveFailures = 0;
             var consecutiveSuccesses = 0;
-            var requiredFailures = 3; // Number of consecutive failures needed to change status to FAILED
-            var requiredSuccesses = 2; // Number of consecutive successes needed to change status to SUCCEED
             var currentStatus = '<?php echo $deviceStatus; ?>'; // Store current status
             
             // Initialize power and energy data points
@@ -334,11 +336,11 @@
                 }
             }
             
-            // Check status every 5 seconds
+            // Check status every statusCheckInterval milliseconds
             setInterval(function() {
                 var currentTime = Date.now();
                 if (currentTime - lastStatusUpdate > statusCheckInterval) {
-                    // If no update received within 5 seconds, increment failure counter
+                    // If no update received within statusCheckInterval, increment failure counter
                     consecutiveFailures++;
                     consecutiveSuccesses = 0; // Reset success counter
                     console.log("No update received, consecutive failures: " + consecutiveFailures);
