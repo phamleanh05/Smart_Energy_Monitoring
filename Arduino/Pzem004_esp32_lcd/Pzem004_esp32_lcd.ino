@@ -16,11 +16,11 @@ unsigned long lastSend = 0;
 const unsigned long sendInterval = 500; // Reduced to 500ms to ensure we get at least 1 reading per second
 
 //======================================== SSID and Password of your WiFi router.
-const char* ssid = "ATPHometech";
-const char* password = "Fptsmarthome";
+// const char* ssid = "ATPHometech";
+// const char* password = "Fptsmarthome";
 
-// const char* ssid = "iPhone ATP";
-// const char* password = "12345678";
+const char* ssid = "iPhone ATP";
+const char* password = "12345678";
 //========================================
 
 //======================================== Variables for HTTP POST request data.
@@ -205,8 +205,7 @@ void loop() {
   
     Serial.println();
     Serial.println("---------------update_data.php");
-    http.begin("http://192.168.1.85/ESP32_Mysql/update_data.php");  //--> in home wifi
-    //http.begin("http://172.20.10.2/ESP32_Mysql/update_data.php"); //--> host post
+    http.begin("http://52.175.25.49/update_data.php");  //--> in home wifi
     http.addHeader("Content-Type", "application/json");  //--> Specify content-type header
    
     httpCode = http.POST(postData); //--> Send the request

@@ -2,8 +2,8 @@
 	class Database {
 		private static $dbName = 'esp32_smart_energy'; // Example: private static $dbName = 'myDB';
 		private static $dbHost = 'localhost'; // Example: private static $dbHost = 'localhost';
-		private static $dbUsername = 'root'; // Example: private static $dbUsername = 'myUserName';
-		private static $dbUserPassword = ''; // // Example: private static $dbUserPassword = 'myPassword';
+		private static $dbUsername = 'anhplt'; // Example: private static $dbUsername = 'myUserName';
+		private static $dbUserPassword = 'Anhpham123@'; // // Example: private static $dbUserPassword = 'myPassword';
 		 
 		private static $cont  = null;
 		 
