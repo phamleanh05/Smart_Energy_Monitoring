@@ -3,7 +3,7 @@
 	header('Content-Type: application/json');
 
 	// Configuration parameters - adjust these to control timing
-	$data_freshness_threshold = 10000; // 10 seconds - how old data can be before considered stale
+	$data_freshness_threshold = 5000; // 10 seconds - how old data can be before considered stale
 	$min_recent_records = 2; // Minimum number of recent records needed to consider ESP32 active
 	
 	$pdo = Database::connect();
