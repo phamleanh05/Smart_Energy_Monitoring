@@ -286,7 +286,10 @@
             var lastStatusUpdate = Date.now();
             var statusCheckInterval = 5000; // 5 seconds
             var consecutiveFailures = 0;
+            var consecutiveSuccesses = 0;
             var requiredFailures = 3; // Number of consecutive failures needed to change status to FAILED
+            var requiredSuccesses = 2; // Number of consecutive successes needed to change status to SUCCEED
+            var currentStatus = '<?php echo $deviceStatus; ?>'; // Store current status
             
             // Initialize power and energy data points
             var now = Date.now();
@@ -300,29 +303,34 @@
                 var statusIndicator = $(".status-indicator");
                 var statusText = statusIndicator.next("span");
                 
-                // If ESP32 is not active, force FAILED status
+                // If ESP32 is not active, increment failure counter
                 if (!isEsp32Active) {
                     consecutiveFailures++;
+                    consecutiveSuccesses = 0; // Reset success counter
                     console.log("ESP32 not active, consecutive failures: " + consecutiveFailures);
                     
                     // Only change status to FAILED after multiple consecutive failures
-                    if (consecutiveFailures >= requiredFailures) {
+                    if (consecutiveFailures >= requiredFailures && currentStatus !== 'FAILED') {
+                        currentStatus = 'FAILED';
                         statusIndicator.removeClass('status-online').addClass('status-offline');
                         statusText.text('Thiết Bị Không Hoạt Động');
-                        return;
                     }
                 } else {
-                    // Reset failure counter when ESP32 is active
-                    consecutiveFailures = 0;
-                }
-                
-                // Otherwise use the provided status
-                if (status === 'SUCCEED') {
-                    statusIndicator.removeClass('status-offline').addClass('status-online');
-                    statusText.text('Thiết Bị Hoạt Động');
-                } else {
-                    statusIndicator.removeClass('status-online').addClass('status-offline');
-                    statusText.text('Thiết Bị Không Hoạt Động');
+                    // ESP32 is active, increment success counter
+                    consecutiveSuccesses++;
+                    console.log("ESP32 active, consecutive successes: " + consecutiveSuccesses);
+                    
+                    // Only change status to SUCCEED after multiple consecutive successes
+                    if (consecutiveSuccesses >= requiredSuccesses && currentStatus !== 'SUCCEED') {
+                        currentStatus = status; // Use the provided status
+                        if (currentStatus === 'SUCCEED') {
+                            statusIndicator.removeClass('status-offline').addClass('status-online');
+                            statusText.text('Thiết Bị Hoạt Động');
+                        } else {
+                            statusIndicator.removeClass('status-online').addClass('status-offline');
+                            statusText.text('Thiết Bị Không Hoạt Động');
+                        }
+                    }
                 }
             }
             
@@ -332,11 +340,16 @@
                 if (currentTime - lastStatusUpdate > statusCheckInterval) {
                     // If no update received within 5 seconds, increment failure counter
                     consecutiveFailures++;
+                    consecutiveSuccesses = 0; // Reset success counter
                     console.log("No update received, consecutive failures: " + consecutiveFailures);
                     
                     // Only change status to FAILED after multiple consecutive failures
-                    if (consecutiveFailures >= requiredFailures) {
-                        updateStatusIndicator('FAILED', false);
+                    if (consecutiveFailures >= requiredFailures && currentStatus !== 'FAILED') {
+                        currentStatus = 'FAILED';
+                        var statusIndicator = $(".status-indicator");
+                        var statusText = statusIndicator.next("span");
+                        statusIndicator.removeClass('status-online').addClass('status-offline');
+                        statusText.text('Thiết Bị Không Hoạt Động');
                     }
                 }
             }, statusCheckInterval);
@@ -513,6 +526,9 @@
                         var timestamp = latestData.timestamp || Date.now();
                         var deviceStatus = latestData.status_read_sensor_pzem || 'FAILED';
                         var isEsp32Active = response.is_esp32_active || false;
+                        var recentCount = response.recent_count || 0;
+                        
+                        console.log("ESP32 active: " + isEsp32Active + ", Recent count: " + recentCount);
                         
                         // Update last status update time
                         lastStatusUpdate = Date.now();

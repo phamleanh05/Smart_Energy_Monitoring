@@ -12,10 +12,27 @@
 	$q_latest = $pdo->query($sql_latest);
 	$latest_data = $q_latest->fetch(PDO::FETCH_ASSOC);
 	
-	// Check if ESP32 is actively sending data (within last 5 seconds)
+	// Check if ESP32 is actively sending data by looking at recent records
 	$current_time = time() * 1000; // Convert to milliseconds
 	$data_age = $current_time - ($latest_data['timestamp'] ?? 0);
-	$is_esp32_active = $data_age < 5000; // 5 seconds threshold
+	
+	// Get the last 3 records to check for consistent activity
+	$sql_recent = "SELECT UNIX_TIMESTAMP(created_at) * 1000 AS timestamp
+                   FROM energy_readings 
+                   ORDER BY created_at DESC LIMIT 3";
+	$q_recent = $pdo->query($sql_recent);
+	$recent_records = $q_recent->fetchAll(PDO::FETCH_ASSOC);
+	
+	// Check if we have at least 2 recent records within 10 seconds
+	$recent_count = 0;
+	foreach ($recent_records as $record) {
+		if ($current_time - $record['timestamp'] < 10000) { // 10 seconds threshold
+			$recent_count++;
+		}
+	}
+	
+	// ESP32 is considered active if we have at least 2 recent records
+	$is_esp32_active = $recent_count >= 2;
 	
 	// If ESP32 is not active (not sending new data), set status to FAILED
 	if (!$is_esp32_active) {
@@ -36,7 +53,8 @@
 	$response = [
 		"latest" => $latest_data,
 		"history" => $history_data,
-		"is_esp32_active" => $is_esp32_active
+		"is_esp32_active" => $is_esp32_active,
+		"recent_count" => $recent_count
 	];
 	
 	Database::disconnect();
