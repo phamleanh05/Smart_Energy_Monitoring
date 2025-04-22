@@ -1,4 +1,12 @@
 <?php
+    session_start();
+    
+    // Check if user is logged in
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: login.php");
+        exit();
+    }
+    
     $updateInterval = 1000; // in milliseconds (1 second)
     $initialNumberOfDataPoints = 60; // Reduced to match get_data.php
     
@@ -188,6 +196,17 @@
         .history-link:hover {
             background-color: rgba(255, 255, 255, 0.3);
         }
+        .logout-link {
+            color: white;
+            text-decoration: none;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .logout-link:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
         @media (max-width: 1200px) {
             .main-content {
                 grid-template-columns: 1fr;
@@ -226,6 +245,7 @@
                 </div>
                 <div class="nav-links">
                     <a href="historical_data.php" class="history-link">Xem Dữ Liệu Lịch Sử</a>
+                    <a href="logout.php" class="logout-link">Đăng Xuất</a>
                 </div>
             </div>
         </div>

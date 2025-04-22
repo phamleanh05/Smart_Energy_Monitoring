@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
 // Default date range (last 24 hours)
 $defaultStartDate = date('Y-m-d', strtotime('-1 day'));
 $defaultEndDate = date('Y-m-d');
@@ -145,10 +153,13 @@ $endDateTime = $endDate . ' ' . $endTime;
         .nav-links a {
             color: #2196F3;
             text-decoration: none;
-            margin-right: 15px;
+            font-weight: bold;
         }
         .nav-links a:hover {
             text-decoration: underline;
+        }
+        .logout-link {
+            margin-left: 15px;
         }
         .view-toggle {
             display: flex;
@@ -252,6 +263,7 @@ $endDateTime = $endDate . ' ' . $endTime;
     <div class="container">
         <div class="nav-links">
             <a href="dashboard.php">← Quay lại Bảng Điều Khiển</a>
+            <a href="logout.php" class="logout-link">Đăng Xuất</a>
         </div>
         
         <div class="header">
