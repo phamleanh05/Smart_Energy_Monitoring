@@ -105,6 +105,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             margin-bottom: 15px;
             text-align: center;
         }
+        .register-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .register-link a {
+            color: #2196F3;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -128,6 +136,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
             <button type="submit">Đăng Nhập</button>
         </form>
+        
+        <div class="register-link">
+            Chưa có tài khoản? <a href="register.php">Đăng ký</a>
+        </div>
     </div>
 </body>
 </html> 
