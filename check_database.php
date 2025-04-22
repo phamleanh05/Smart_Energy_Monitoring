@@ -1,0 +1,101 @@
+<?php
+require 'database.php';
+
+// Enable error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+echo "<h1>Database Check</h1>";
+
+try {
+    $pdo = Database::connect();
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    // Check if the table exists
+    $sql = "SHOW TABLES LIKE 'energy_readings'";
+    $result = $pdo->query($sql);
+    
+    if ($result->rowCount() > 0) {
+        echo "<p>Table 'energy_readings' exists.</p>";
+        
+        // Get table structure
+        $sql = "DESCRIBE energy_readings";
+        $result = $pdo->query($sql);
+        $columns = $result->fetchAll(PDO::FETCH_ASSOC);
+        
+        echo "<h2>Table Structure:</h2>";
+        echo "<table border='1'>";
+        echo "<tr><th>Field</th><th>Type</th><th>Null</th><th>Key</th><th>Default</th><th>Extra</th></tr>";
+        foreach ($columns as $column) {
+            echo "<tr>";
+            echo "<td>" . $column['Field'] . "</td>";
+            echo "<td>" . $column['Type'] . "</td>";
+            echo "<td>" . $column['Null'] . "</td>";
+            echo "<td>" . $column['Key'] . "</td>";
+            echo "<td>" . $column['Default'] . "</td>";
+            echo "<td>" . $column['Extra'] . "</td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+        
+        // Get record count
+        $sql = "SELECT COUNT(*) as count FROM energy_readings";
+        $result = $pdo->query($sql);
+        $count = $result->fetch(PDO::FETCH_ASSOC)['count'];
+        
+        echo "<p>Total records: " . $count . "</p>";
+        
+        // Get date range
+        $sql = "SELECT MIN(created_at) as min_date, MAX(created_at) as max_date FROM energy_readings";
+        $result = $pdo->query($sql);
+        $dates = $result->fetch(PDO::FETCH_ASSOC);
+        
+        echo "<p>Date range: " . $dates['min_date'] . " to " . $dates['max_date'] . "</p>";
+        
+        // Get sample data
+        $sql = "SELECT * FROM energy_readings ORDER BY created_at DESC LIMIT 5";
+        $result = $pdo->query($sql);
+        $sampleData = $result->fetchAll(PDO::FETCH_ASSOC);
+        
+        echo "<h2>Sample Data (5 most recent records):</h2>";
+        echo "<table border='1'>";
+        echo "<tr><th>ID</th><th>Device Name</th><th>Voltage</th><th>Current</th><th>Power</th><th>Energy</th><th>Created At</th></tr>";
+        foreach ($sampleData as $row) {
+            echo "<tr>";
+            echo "<td>" . $row['id'] . "</td>";
+            echo "<td>" . $row['device_name'] . "</td>";
+            echo "<td>" . $row['voltage'] . "</td>";
+            echo "<td>" . $row['current'] . "</td>";
+            echo "<td>" . $row['power'] . "</td>";
+            echo "<td>" . $row['energy_consumed'] . "</td>";
+            echo "<td>" . $row['created_at'] . "</td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "<p>Table 'energy_readings' does not exist.</p>";
+        
+        // Create the table
+        echo "<p>Creating table 'energy_readings'...</p>";
+        
+        $sql = "CREATE TABLE energy_readings (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            device_name VARCHAR(50),
+            voltage FLOAT,
+            current FLOAT,
+            power FLOAT,
+            energy_consumed FLOAT,
+            status_read_sensor_pzem VARCHAR(50),
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )";
+        
+        $pdo->exec($sql);
+        echo "<p>Table created successfully.</p>";
+    }
+    
+} catch (PDOException $e) {
+    echo "<p>Database error: " . $e->getMessage() . "</p>";
+}
+
+Database::disconnect();
+?> 

@@ -1,0 +1,506 @@
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 23653
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [Connection] => keep-alive
+    [Cache-Control] => max-age=0
+    [Upgrade-Insecure-Requests] => 1
+    [User-Agent] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36
+    [Accept] => text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+    [Accept-Encoding] => gzip, deflate
+    [Accept-Language] => en-US,en;q=0.9
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 23762
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 23871
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 23980
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 24089
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 24198
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 24307
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 24416
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 24525
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 24634
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 24743
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 24852
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 24961
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 25070
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 25179
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 25288
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 25397
+)
+Array
+(
+    [User-Agent] => PostmanRuntime/7.43.2
+    [Accept] => */*
+    [Postman-Token] => 2ef8a49d-24e1-4dd4-893f-a690192e0284
+    [Host] => 172.20.10.5
+    [Accept-Encoding] => gzip, deflate, br
+    [Connection] => keep-alive
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 109
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 25506
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 25615
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 25724
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 25833
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 25942
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 26051
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 26160
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 26269
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 26378
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 26487
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 26596
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 26705
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 26814
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 26923
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 27032
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 27141
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 27250
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 27359
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 27468
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 27577
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 27686
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 27795
+)
+Array
+(
+    [User-Agent] => PostmanRuntime/7.43.2
+    [Accept] => */*
+    [Postman-Token] => 31b5e761-69c9-4199-97bb-cec8689f09e0
+    [Host] => 172.20.10.5
+    [Accept-Encoding] => gzip, deflate, br
+    [Connection] => keep-alive
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 109
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 27904
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [Connection] => keep-alive
+    [Cache-Control] => max-age=0
+    [Upgrade-Insecure-Requests] => 1
+    [User-Agent] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36
+    [Accept] => text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+    [Accept-Encoding] => gzip, deflate
+    [Accept-Language] => en-US,en;q=0.9
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 28013
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 28122
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 28231
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+    [Content-Length] => 28340
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [Connection] => keep-alive
+    [Upgrade-Insecure-Requests] => 1
+    [User-Agent] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36
+    [Accept] => text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+    [Accept-Encoding] => gzip, deflate
+    [Accept-Language] => en-US,en;q=0.9
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+)
+Array
+(
+    [Host] => 172.20.10.5
+    [User-Agent] => ESP32HTTPClient
+    [Connection] => keep-alive
+    [Accept-Encoding] => identity;q=1,chunked;q=0.1,*;q=0
+    [Content-Type] => application/x-www-form-urlencoded
+)
