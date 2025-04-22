@@ -284,8 +284,9 @@
             var energyDataPoints = [];
             var updateCount = 0;
             var lastStatusUpdate = Date.now();
-            var statusCheckInterval = 5000; // 1 second
-            var dataStaleThreshold = 1000;
+            var statusCheckInterval = 5000; // 5 seconds
+            var consecutiveFailures = 0;
+            var requiredFailures = 3; // Number of consecutive failures needed to change status to FAILED
             
             // Initialize power and energy data points
             var now = Date.now();
@@ -295,15 +296,24 @@
             }
             
             // Function to update status indicator
-            function updateStatusIndicator(status, isDataFresh) {
+            function updateStatusIndicator(status, isEsp32Active) {
                 var statusIndicator = $(".status-indicator");
                 var statusText = statusIndicator.next("span");
                 
-                // If data is stale, force FAILED status
-                if (!isDataFresh) {
-                    statusIndicator.removeClass('status-online').addClass('status-offline');
-                    statusText.text('Thiết Bị Không Hoạt Động');
-                    return;
+                // If ESP32 is not active, force FAILED status
+                if (!isEsp32Active) {
+                    consecutiveFailures++;
+                    console.log("ESP32 not active, consecutive failures: " + consecutiveFailures);
+                    
+                    // Only change status to FAILED after multiple consecutive failures
+                    if (consecutiveFailures >= requiredFailures) {
+                        statusIndicator.removeClass('status-online').addClass('status-offline');
+                        statusText.text('Thiết Bị Không Hoạt Động');
+                        return;
+                    }
+                } else {
+                    // Reset failure counter when ESP32 is active
+                    consecutiveFailures = 0;
                 }
                 
                 // Otherwise use the provided status
@@ -316,12 +326,18 @@
                 }
             }
             
-            // Check status every second
+            // Check status every 5 seconds
             setInterval(function() {
                 var currentTime = Date.now();
                 if (currentTime - lastStatusUpdate > statusCheckInterval) {
-                    // If no update received within 1 second, set status to FAILED
-                    updateStatusIndicator('FAILED', false);
+                    // If no update received within 5 seconds, increment failure counter
+                    consecutiveFailures++;
+                    console.log("No update received, consecutive failures: " + consecutiveFailures);
+                    
+                    // Only change status to FAILED after multiple consecutive failures
+                    if (consecutiveFailures >= requiredFailures) {
+                        updateStatusIndicator('FAILED', false);
+                    }
                 }
             }, statusCheckInterval);
             
@@ -496,16 +512,13 @@
                         var energy = parseFloat(latestData.energy_consumed || 0);
                         var timestamp = latestData.timestamp || Date.now();
                         var deviceStatus = latestData.status_read_sensor_pzem || 'FAILED';
-                        
-                        // Check if data is fresh (within last 2 seconds)
-                        var currentTime = Date.now();
-                        var isDataFresh = (currentTime - timestamp) < dataStaleThreshold;
+                        var isEsp32Active = response.is_esp32_active || false;
                         
                         // Update last status update time
-                        lastStatusUpdate = currentTime;
+                        lastStatusUpdate = Date.now();
                         
-                        // Update device status with freshness check
-                        updateStatusIndicator(deviceStatus, isDataFresh);
+                        // Update device status with ESP32 active check
+                        updateStatusIndicator(deviceStatus, isEsp32Active);
                         
                         // Update displays
                         $("#voltage").text(voltage.toFixed(2) + " V");

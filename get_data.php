@@ -12,13 +12,13 @@
 	$q_latest = $pdo->query($sql_latest);
 	$latest_data = $q_latest->fetch(PDO::FETCH_ASSOC);
 	
-	// Check if data is fresh (within last 2 seconds)
+	// Check if ESP32 is actively sending data (within last 5 seconds)
 	$current_time = time() * 1000; // Convert to milliseconds
 	$data_age = $current_time - ($latest_data['timestamp'] ?? 0);
-	$is_fresh = $data_age < 2000; // 2 seconds threshold
+	$is_esp32_active = $data_age < 5000; // 5 seconds threshold
 	
-	// If data is stale, set status to FAILED
-	if (!$is_fresh) {
+	// If ESP32 is not active (not sending new data), set status to FAILED
+	if (!$is_esp32_active) {
 		$latest_data['status_read_sensor_pzem'] = 'FAILED';
 	}
 	
@@ -35,7 +35,8 @@
 	// Combine the data
 	$response = [
 		"latest" => $latest_data,
-		"history" => $history_data
+		"history" => $history_data,
+		"is_esp32_active" => $is_esp32_active
 	];
 	
 	Database::disconnect();
