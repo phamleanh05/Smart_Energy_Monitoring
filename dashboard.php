@@ -14,6 +14,7 @@
         $dataPoints = array();
         $currentDataPoints = array();
         $lastUpdateTime = date('H:i:s');
+        $deviceStatus = 'FAILED';
         error_log("Failed to decode JSON from get_data.php");
     } else {
         $latestData = $response['latest'];
@@ -24,6 +25,7 @@
         $power = isset($latestData['power']) ? $latestData['power'] : 0;
         $energy = isset($latestData['energy_consumed']) ? $latestData['energy_consumed'] : 0;
         $lastUpdateTime = isset($latestData['created_at']) ? date('H:i:s', strtotime($latestData['created_at'])) : date('H:i:s');
+        $deviceStatus = isset($latestData['status_read_sensor_pzem']) ? $latestData['status_read_sensor_pzem'] : 'FAILED';
         
         // Initialize data points from history
         $dataPoints = array();
@@ -214,8 +216,8 @@
             <div>
                 <h1>Bảng Điều Khiển Thiết Bị IoT</h1>
                 <div>
-                    <span class="status-indicator status-online"></span>
-                    <span>Thiết Bị Hoạt Động</span>
+                    <span class="status-indicator <?php echo $deviceStatus === 'SUCCEED' ? 'status-online' : 'status-offline'; ?>"></span>
+                    <span>Thiết Bị <?php echo $deviceStatus === 'SUCCEED' ? 'Hoạt Động' : 'Không Hoạt Động'; ?></span>
                 </div>
             </div>
             <div class="header-right">
@@ -281,6 +283,9 @@
             var powerDataPoints = [];
             var energyDataPoints = [];
             var updateCount = 0;
+            var lastStatusUpdate = Date.now();
+            var statusCheckInterval = 5000; // 1 second
+            var dataStaleThreshold = 1000;
             
             // Initialize power and energy data points
             var now = Date.now();
@@ -288,6 +293,37 @@
                 powerDataPoints.push({ x: now - (60 - i) * updateInterval, y: 0 });
                 energyDataPoints.push({ x: now - (60 - i) * updateInterval, y: 0 });
             }
+            
+            // Function to update status indicator
+            function updateStatusIndicator(status, isDataFresh) {
+                var statusIndicator = $(".status-indicator");
+                var statusText = statusIndicator.next("span");
+                
+                // If data is stale, force FAILED status
+                if (!isDataFresh) {
+                    statusIndicator.removeClass('status-online').addClass('status-offline');
+                    statusText.text('Thiết Bị Không Hoạt Động');
+                    return;
+                }
+                
+                // Otherwise use the provided status
+                if (status === 'SUCCEED') {
+                    statusIndicator.removeClass('status-offline').addClass('status-online');
+                    statusText.text('Thiết Bị Hoạt Động');
+                } else {
+                    statusIndicator.removeClass('status-online').addClass('status-offline');
+                    statusText.text('Thiết Bị Không Hoạt Động');
+                }
+            }
+            
+            // Check status every second
+            setInterval(function() {
+                var currentTime = Date.now();
+                if (currentTime - lastStatusUpdate > statusCheckInterval) {
+                    // If no update received within 1 second, set status to FAILED
+                    updateStatusIndicator('FAILED', false);
+                }
+            }, statusCheckInterval);
             
             // CanvasJS Charts
             var voltageChart = new CanvasJS.Chart("voltageChart", {
@@ -459,44 +495,51 @@
                         var power = parseFloat(latestData.power);
                         var energy = parseFloat(latestData.energy_consumed || 0);
                         var timestamp = latestData.timestamp || Date.now();
+                        var deviceStatus = latestData.status_read_sensor_pzem || 'FAILED';
                         
-                        if (!isNaN(voltage) && !isNaN(current) && !isNaN(power)) {
-                            // Update displays
-                            $("#voltage").text(voltage.toFixed(2) + " V");
-                            $("#current").text(current.toFixed(2) + " A");
-                            $("#power").text(power.toFixed(2) + " W");
-                            $("#energy").text(energy.toFixed(2) + " kWh");
-                            $("#lastUpdate").text(timeString);
-                            
-                            // Update charts with new data point
-                            dataPoints.push({ x: timestamp, y: voltage });
-                            if (dataPoints.length > 60) {
-                                dataPoints.shift();
-                            }
-                            
-                            currentDataPoints.push({ x: timestamp, y: current });
-                            if (currentDataPoints.length > 60) {
-                                currentDataPoints.shift();
-                            }
-                            
-                            powerDataPoints.push({ x: timestamp, y: power });
-                            if (powerDataPoints.length > 60) {
-                                powerDataPoints.shift();
-                            }
-                            
-                            energyDataPoints.push({ x: timestamp, y: energy });
-                            if (energyDataPoints.length > 60) {
-                                energyDataPoints.shift();
-                            }
-                            
-                            // Render all charts
-                            voltageChart.render();
-                            currentChart.render();
-                            powerChart.render();
-                            energyChart.render();
-                        } else {
-                            console.error("Giá trị không hợp lệ:", latestData);
+                        // Check if data is fresh (within last 2 seconds)
+                        var currentTime = Date.now();
+                        var isDataFresh = (currentTime - timestamp) < dataStaleThreshold;
+                        
+                        // Update last status update time
+                        lastStatusUpdate = currentTime;
+                        
+                        // Update device status with freshness check
+                        updateStatusIndicator(deviceStatus, isDataFresh);
+                        
+                        // Update displays
+                        $("#voltage").text(voltage.toFixed(2) + " V");
+                        $("#current").text(current.toFixed(2) + " A");
+                        $("#power").text(power.toFixed(2) + " W");
+                        $("#energy").text(energy.toFixed(2) + " kWh");
+                        $("#lastUpdate").text(timeString);
+                        
+                        // Update charts with new data point
+                        dataPoints.push({ x: timestamp, y: voltage });
+                        if (dataPoints.length > 60) {
+                            dataPoints.shift();
                         }
+                        
+                        currentDataPoints.push({ x: timestamp, y: current });
+                        if (currentDataPoints.length > 60) {
+                            currentDataPoints.shift();
+                        }
+                        
+                        powerDataPoints.push({ x: timestamp, y: power });
+                        if (powerDataPoints.length > 60) {
+                            powerDataPoints.shift();
+                        }
+                        
+                        energyDataPoints.push({ x: timestamp, y: energy });
+                        if (energyDataPoints.length > 60) {
+                            energyDataPoints.shift();
+                        }
+                        
+                        // Render all charts
+                        voltageChart.render();
+                        currentChart.render();
+                        powerChart.render();
+                        energyChart.render();
                     } else {
                         console.error("Phản hồi không hợp lệ từ get_data.php:", response);
                     }

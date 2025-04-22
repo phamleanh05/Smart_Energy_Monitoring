@@ -97,6 +97,5 @@ echo "<h2>Links:</h2>";
 echo "<ul>";
 echo "<li><a href='historical_data.php'>Go to Historical Data Page</a></li>";
 echo "<li><a href='dashboard.php'>Go to Dashboard</a></li>";
-echo "<li><a href='test_historical_data.php'>Test Historical Data</a></li>";
 echo "</ul>";
 ?> 

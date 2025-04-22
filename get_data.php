@@ -5,11 +5,22 @@
 	$pdo = Database::connect();
 	
 	// Get the latest reading
-	$sql_latest = "SELECT device_name, voltage, current, power, energy_consumed, 
-                   UNIX_TIMESTAMP(created_at) * 1000 AS timestamp
+	$sql_latest = "SELECT device_name, voltage, current, power, energy_consumed, status_read_sensor_pzem,
+                   UNIX_TIMESTAMP(created_at) * 1000 AS timestamp,
+                   created_at
             FROM energy_readings ORDER BY created_at DESC LIMIT 1";
 	$q_latest = $pdo->query($sql_latest);
 	$latest_data = $q_latest->fetch(PDO::FETCH_ASSOC);
+	
+	// Check if data is fresh (within last 2 seconds)
+	$current_time = time() * 1000; // Convert to milliseconds
+	$data_age = $current_time - ($latest_data['timestamp'] ?? 0);
+	$is_fresh = $data_age < 2000; // 2 seconds threshold
+	
+	// If data is stale, set status to FAILED
+	if (!$is_fresh) {
+		$latest_data['status_read_sensor_pzem'] = 'FAILED';
+	}
 	
 	// Get historical data for charts (last 60 readings instead of 100 for faster updates)
 	$sql_history = "SELECT voltage, current, 
