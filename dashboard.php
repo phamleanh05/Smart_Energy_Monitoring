@@ -500,9 +500,9 @@
                 },
                 axisY: { 
                     suffix: " kWh",
-                    interval: 50,
+                    interval: 0.1,
                     minimum: 0,
-                    maximum: 300,
+                    maximum: 2,
                     labelFormatter: function(e) {
                         return e.value.toFixed(2);
                     }
