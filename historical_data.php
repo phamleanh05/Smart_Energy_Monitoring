@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+// Set timezone to match the local timezone
+date_default_timezone_set('Asia/Ho_Chi_Minh'); // Set to Vietnam timezone
+
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
@@ -257,6 +260,32 @@ $endDateTime = $endDate . ' ' . $endTime;
             padding: 5px 10px;
             font-size: 14px;
         }
+        .control-group button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .debug-info {
+            margin: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .debug-info h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .debug-info p {
+            margin: 5px 0;
+            font-family: monospace;
+        }
     </style>
 </head>
 <body>
@@ -292,6 +321,15 @@ $endDateTime = $endDate . ' ' . $endTime;
                 <button id="fetch-data">Lấy Dữ Liệu</button>
             </div>
         </div>
+        
+        <?php if (isset($_GET['debug']) && $_GET['debug'] == 1): ?>
+        <div class="debug-info">
+            <h3>Debug Information</h3>
+            <p>Current Timezone: <?php echo date_default_timezone_get(); ?></p>
+            <p>Server Time: <?php echo date('Y-m-d H:i:s'); ?></p>
+            <p>Selected Date Range: <?php echo $startDate . ' ' . $startTime; ?> to <?php echo $endDate . ' ' . $endTime; ?></p>
+        </div>
+        <?php endif; ?>
         
         <div class="summary">
             <div class="summary-card">
@@ -559,6 +597,19 @@ $endDateTime = $endDate . ' ' . $endTime;
                     end_time: endTime
                 });
                 
+                // Clear previous data
+                $("#data-table-body").empty();
+                voltageChart.options.data[0].dataPoints = [];
+                currentChart.options.data[0].dataPoints = [];
+                powerChart.options.data[0].dataPoints = [];
+                energyChart.options.data[0].dataPoints = [];
+                
+                // Render empty charts
+                voltageChart.render();
+                currentChart.render();
+                powerChart.render();
+                energyChart.render();
+                
                 $.ajax({
                     url: "get_historical_data.php",
                     type: "GET",
@@ -590,9 +641,6 @@ $endDateTime = $endDate . ' ' . $endTime;
                         var currentDataPoints = [];
                         var powerDataPoints = [];
                         var energyDataPoints = [];
-                        
-                        // Clear table
-                        $("#data-table-body").empty();
                         
                         console.log("Processing " + response.data.length + " data points");
                         

@@ -6,6 +6,9 @@ header('Content-Type: application/json');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+// Set timezone to match the local timezone
+date_default_timezone_set('Asia/Ho_Chi_Minh'); // Set to Vietnam timezone
+
 // Log the request parameters
 error_log("Historical data request - Start Date: " . (isset($_GET['start_date']) ? $_GET['start_date'] : 'not set') . 
           ", End Date: " . (isset($_GET['end_date']) ? $_GET['end_date'] : 'not set') . 
