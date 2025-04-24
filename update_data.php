@@ -1,6 +1,7 @@
 <?php
 require 'database.php';
 
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 // Lấy dữ liệu từ JSON
 $data = json_decode(file_get_contents("php://input"), true);
 
